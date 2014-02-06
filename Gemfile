@@ -5,7 +5,9 @@ gem 'sinatra-contrib'
 gem 'json'
 gem 'sequel'
 gem 'rack-rest_api_versioning'
-gem 'puma'
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-rbenv', '~> 2.0'
+gem 'capistrano-bundler'
 
 group :development do
 	gem "pry"

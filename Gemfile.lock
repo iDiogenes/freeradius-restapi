@@ -2,16 +2,28 @@ GEM
   remote: https://rubygems.org/
   specs:
     backports (3.4.1)
+    capistrano (3.1.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (~> 1.3)
+    capistrano-bundler (1.1.1)
+      capistrano (~> 3.0)
+      sshkit (>= 1.2.0)
+    capistrano-rbenv (2.0.2)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
     coderay (1.1.0)
+    i18n (0.6.9)
     json (1.8.1)
     method_source (0.8.2)
     multi_json (1.8.4)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.7.0)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
-    puma (2.7.1)
-      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-protection (1.5.2)
       rack
@@ -19,6 +31,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rake (10.1.1)
     sequel (4.6.0)
     sinatra (1.4.4)
       rack (~> 1.4)
@@ -34,15 +47,24 @@ GEM
     sinatra-reloader (1.0)
       sinatra-contrib
     slop (3.4.7)
+    sshkit (1.3.0)
+      net-scp (>= 1.1.2)
+      net-ssh
+      term-ansicolor
+    term-ansicolor (1.2.2)
+      tins (~> 0.8)
     tilt (1.4.1)
+    tins (0.13.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  capistrano (~> 3.1.0)
+  capistrano-bundler
+  capistrano-rbenv (~> 2.0)
   json
   pry
-  puma
   rack-rest_api_versioning
   sequel
   sinatra
