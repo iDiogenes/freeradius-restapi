@@ -1,0 +1,7 @@
+#Ignore enviorement files used for forman
+.env
+
+.ruby-version
+
+#Ignore log files
+log/
