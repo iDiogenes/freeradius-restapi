@@ -8,6 +8,7 @@ gem 'rack-rest_api_versioning'
 gem 'capistrano', '~> 3.1.0'
 gem 'capistrano-rbenv', '~> 2.0'
 gem 'capistrano-bundler'
+gem 'pg'
 
 group :development do
 	gem "pry"
