@@ -20,6 +20,7 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.8.0)
+    pg (0.17.1)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -64,6 +65,7 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-rbenv (~> 2.0)
   json
+  pg
   pry
   rack-rest_api_versioning
   sequel
