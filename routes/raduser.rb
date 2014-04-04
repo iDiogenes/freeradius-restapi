@@ -21,8 +21,8 @@ class Api < Sinatra::Application
 				body json(status: "Success")
 			rescue => e
 				logger.info e
-				status 500
-				body json(status: "Raduser creation Failed!")				
+				status 422
+				body json(status: "Raduser creation failed - #{e.message}")
 			end
 		end
 	end
@@ -32,7 +32,12 @@ class Api < Sinatra::Application
 
 		deleted_radcheck_user = RadCheck.where(username: params[:username]).delete
 		deleted_radreply_user = RadReply.where(username: params[:username]).delete
-		status 204
-		body ''
+		if deleted_radcheck_user >= 1 && deleted_radreply_user >= 1
+			status 204
+			body ''
+		else
+			status 404
+			body ''
+		end
 	end
 end
