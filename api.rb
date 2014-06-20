@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/json'
 require 'sinatra/reloader'
+require 'sinatra/config_file'
 require 'rack/rest_api_versioning'
 require 'json'
 
@@ -25,6 +26,7 @@ class Api < Sinatra::Application
   use Rack::RestApiVersioning, :default_version => '1'
 end
 
+config_file 'config/application.yml'
 
 require_relative 'routes/init'
 require_relative 'models/init'

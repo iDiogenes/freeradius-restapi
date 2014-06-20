@@ -8,7 +8,7 @@ class Api < Sinatra::Application
   end
 
   get '/verifykey', :check => :auth_key? do
-    json({ message: ENV['AUTHKEY'] })
+    json({ message: settings.authkey })
   end
 
   # Not Found catch-all
