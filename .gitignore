@@ -7,3 +7,5 @@
 log/
 
 config/deploy/
+
+config/application.yml

@@ -1,6 +1,6 @@
 require 'sequel'
 
-DB = Sequel.connect(ENV['DB_URL'])
+DB = Sequel.connect(settings.db_url)
 
 require_relative 'radcheck'
 require_relative 'radreply'
