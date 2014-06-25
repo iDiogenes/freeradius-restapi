@@ -1,7 +1,7 @@
 module AuthenticationHelper
 	
 	def auth_key?
-	  if request_headers['auth_key'] == settings.authkey
+	  if request_headers['auth_key'] == APP_CONFIG['AUTHKEY']
 			return true
 	  else
 	  	logger.warn "#{request.ip} - - #{Time.now.utc.strftime("[%d/%b/%Y %H:%M:%S]")} Received POST request with a bad authentication header"
