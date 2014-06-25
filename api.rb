@@ -1,13 +1,13 @@
 require 'sinatra'
 require 'sinatra/json'
 require 'sinatra/reloader'
-require 'sinatra/config_file'
 require 'rack/rest_api_versioning'
 require 'json'
 
 class Api < Sinatra::Application
   set :environments, %w{development test production staging}
   use Rack::MethodOverride
+  require 'newrelic_rpm'
 
   configure :development do
     require 'pry'
@@ -21,12 +21,10 @@ class Api < Sinatra::Application
       end
     end
   end
-  
   # Set default API version
   use Rack::RestApiVersioning, :default_version => '1'
 end
 
-config_file 'config/application.yml'
 
 require_relative 'routes/init'
 require_relative 'models/init'
