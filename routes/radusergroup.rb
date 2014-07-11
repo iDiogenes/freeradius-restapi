@@ -1,6 +1,6 @@
 class Api < Sinatra::Application
 
-	get "/radusergroup/?" do
+	get "/radusergroup/?", :check => :auth_key? do
 		content_type :json
 		
 		radusergroup = RadUserGroup
@@ -9,7 +9,7 @@ class Api < Sinatra::Application
 		extract_radusers(radusergroup).to_json
 	end
 
-	post "/radusergroup" do
+	post "/radusergroup", :check => :auth_key? do
 		content_type :json
 
 		ensure_payload do |session_hash|
@@ -19,7 +19,7 @@ class Api < Sinatra::Application
 		end
 	end
 
-	put "/radusergroup/:id" do
+	put "/radusergroup/:id", :check => :auth_key? do
 		content_type :json
 		
 		ensure_payload do |session_hash|
@@ -29,7 +29,7 @@ class Api < Sinatra::Application
 		end
 	end
 
-	delete "/radusergroup/:id" do
+	delete "/radusergroup/:id", :check => :auth_key? do
 		content_type :json
 		
 		deleted_user = RadUserGroup[params[:id]].delete

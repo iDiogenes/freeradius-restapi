@@ -1,6 +1,6 @@
 class Api < Sinatra::Application
 
-	get "/radcheck/?" do
+	get "/radcheck/?", :check => :auth_key? do
 		content_type :json
 
 		radcheck = RadCheck
@@ -11,7 +11,7 @@ class Api < Sinatra::Application
 
 	# The client needs to send username, attribute (password encryption) & password as value (if encrypted pre-encrypt)
 	# JSON example: {"attribute" : "SHA-Password", "username" : "boblong", "value" : "myencpytedpassword"}
-	post "/radcheck" do
+	post "/radcheck", :check => :auth_key? do
 		content_type :json
 
 		ensure_payload do |session_hash|
@@ -22,7 +22,7 @@ class Api < Sinatra::Application
 		end
 	end
 
-	put "/radcheck/:username" do
+	put "/radcheck/:username", :check => :auth_key? do
 		content_type :json
 		
 		ensure_payload do |session_hash|
@@ -38,7 +38,7 @@ class Api < Sinatra::Application
 		end
 	end
 
-	delete "/radcheck/:username" do
+	delete "/radcheck/:username", :check => :auth_key? do
 		content_type :json
 
 		deleted_user = RadCheck.where(username: params[:username]).delete

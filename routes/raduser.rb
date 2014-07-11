@@ -2,7 +2,7 @@ class Api < Sinatra::Application
 	# The client needs to send username, password, password_type and all reply attributes and values.
 	# JSON example: {"password_type" : "SHA-Password", "username" : "spguser", "Session-Timeout" : "120",  
 	# "Maximum-Data-Rate-Downstream" : "150", "Maximum-Data-Rate-Upstream" : "170", "password" : "myencpytedpassword"}
-	post "/raduser" do
+	post "/raduser", :check => :auth_key? do
 		content_type :json
 
 		ensure_payload do |session_hash|
@@ -27,7 +27,7 @@ class Api < Sinatra::Application
 		end
 	end
 
-	delete "/raduser/:username" do
+	delete "/raduser/:username", :check => :auth_key? do
 		content_type :json
 
 		deleted_radcheck_user = RadCheck.where(username: params[:username]).delete
