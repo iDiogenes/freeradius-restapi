@@ -1,7 +1,7 @@
 class Api < Sinatra::Application
 
 	#open
-	get "/radreply/?" do
+	get "/radreply/?", :check => :auth_key? do
 		content_type :json
 
 		radreply = RadReply
@@ -10,7 +10,7 @@ class Api < Sinatra::Application
 		extract_radusers(radreply).to_json
 	end
 
-	post "/radreply" do
+	post "/radreply", :check => :auth_key? do
 		content_type :json
 
 		ensure_payload do |session_hash|
@@ -20,7 +20,7 @@ class Api < Sinatra::Application
 		end
 	end
 
-	put "/radreply/:id" do
+	put "/radreply/:id", :check => :auth_key? do
 		content_type :json
 
 		ensure_payload do |session_hash|
@@ -30,7 +30,7 @@ class Api < Sinatra::Application
 		end
 	end
 
-	delete "/radreply/:id" do
+	delete "/radreply/:id", :check => :auth_key? do
 		content_type :json
 
 		deleted_user = RadReply[params[:id]].delete
@@ -38,7 +38,7 @@ class Api < Sinatra::Application
 	end
 
 	#session_time
-	post "/radreply/:username/session_timeout" do
+	post "/radreply/:username/session_timeout", :check => :auth_key? do
 		content_type :json
 
 		ensure_payload do |session_hash|
@@ -48,7 +48,7 @@ class Api < Sinatra::Application
 		end
 	end
 
-	put "/radreply/:username/session_timeout" do
+	put "/radreply/:username/session_timeout", :check => :auth_key? do
 		content_type :json
 
 		ensure_payload do |session_hash|
@@ -63,7 +63,7 @@ class Api < Sinatra::Application
 		end
 	end
 
-	delete "/radreply/:username/session_timeout" do
+	delete "/radreply/:username/session_timeout", :check => :auth_key? do
 		content_type :json
 
 		deleted_user = RadReply.where(username: params[:username], attribute: "Session-Timeout").delete
@@ -72,7 +72,7 @@ class Api < Sinatra::Application
 	end
 
 	#maximum_data_rate_upstream
-	post "/radreply/:username/maximum_data_rate_upstream" do
+	post "/radreply/:username/maximum_data_rate_upstream", :check => :auth_key? do
 		content_type :json
 
 		ensure_payload do |session_hash|
@@ -82,7 +82,7 @@ class Api < Sinatra::Application
 		end
 	end
 
-	put "/radreply/:username/maximum_data_rate_upstream" do
+	put "/radreply/:username/maximum_data_rate_upstream", :check => :auth_key? do
 		content_type :json
 
 		ensure_payload do |session_hash|
@@ -97,7 +97,7 @@ class Api < Sinatra::Application
 		end
 	end
 
-	delete "/radreply/:username/maximum_data_rate_upstream" do
+	delete "/radreply/:username/maximum_data_rate_upstream", :check => :auth_key? do
 		content_type :json
 
 		deleted_user = RadReply.where(username: params[:username], attribute: "Maximum-Data-Rate-Upstream").delete
@@ -106,7 +106,7 @@ class Api < Sinatra::Application
 	end
 
 	#maximum_data_rate_downstream
-	post "/radreply/:username/maximum_data_rate_downstream" do
+	post "/radreply/:username/maximum_data_rate_downstream", :check => :auth_key? do
 		content_type :json
 
 		ensure_payload do |session_hash|
@@ -116,7 +116,7 @@ class Api < Sinatra::Application
 		end
 	end
 
-	put "/radreply/:username/maximum_data_rate_downstream" do
+	put "/radreply/:username/maximum_data_rate_downstream", :check => :auth_key? do
 		content_type :json
 
 		ensure_payload do |session_hash|
@@ -131,7 +131,7 @@ class Api < Sinatra::Application
 		end
 	end
 
-	delete "/radreply/:username/maximum_data_rate_downstream" do
+	delete "/radreply/:username/maximum_data_rate_downstream", :check => :auth_key? do
 		content_type :json
 
 		deleted_user = RadReply.where(username: params[:username], attribute: "Maximum-Data-Rate-Downstream").delete

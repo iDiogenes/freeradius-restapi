@@ -1,6 +1,6 @@
 class Api < Sinatra::Application
 
-	get "/radpostauth/?" do
+	get "/radpostauth/?", :check => :auth_key? do
 		content_type :json
 		
 		radpostauth = RadPostAuth
